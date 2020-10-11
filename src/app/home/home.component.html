@@ -1,0 +1,109 @@
+
+
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Home</a>
+    <ng-template ngbNavContent>
+      <p>Glance of some of the modern FullStack technologies which are in current trend</p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Front End</a>
+    <ng-template ngbNavContent>
+      <div class="container">
+        <div class="row" *ngFor="let item of products; index as i;">
+          <div class="col-md-12 mt-3" *ngIf="item.type === 'Front End'">
+            <div class="card">
+              <div class="card-header">
+                Feature:  {{item.type}}
+              </div>
+              <div class="card-body">
+               <div *ngIf="enableDesc && enableEditIndex == i; else elseBlock">
+                   <p>{{item.description}}</p>
+                   <button type="button" (click)="enableDesc=false" class="btn btn-primary float-right">Back</button>
+               </div>
+               <ng-template #elseBlock>
+                <ul>
+                    <li>Name: {{item.name}}</li>
+                    <li>Category: {{item.category}} </li>
+                    <li>Latest Version: {{item.latestVersion}}</li>
+                    <li>Documentation: {{item.documentation}}</li>
+                  </ul>
+                  <button type="button" (click)="enableDescription($event, i)" class="btn btn-primary float-right">Description</button>
+               </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>Back End</a>
+    <ng-template ngbNavContent>
+        <div class="container">
+      <div class="row" *ngFor="let item of products; index as i;">
+        <div class="col-md-12 mt-3" *ngIf="item.type === 'Back End'">
+          <div class="card">
+            <div class="card-header">
+              Featured: {{item.type}}
+            </div>
+      
+            <div class="card-body">
+                <div *ngIf="enableDesc && enableEditIndex == i; else elseBackEnd">
+                    <p>{{item.description}}</p>
+                    <button type="button" (click)="enableDesc=false" class="btn btn-primary float-right">Back</button>
+                </div>
+                <ng-template #elseBackEnd>
+              <ul>
+                <li>Name: {{item.name}}</li>
+                <li>Category: {{item.category}} </li>
+                <li>Latest Version: {{item.latestVersion}}</li>
+                <li>Documentation: {{item.documentation}}</li>
+              </ul>
+              <button type="button" (click)="enableDescription($event, i)" class="btn btn-primary float-right">Description</button>
+              <!-- <a href="#" class="btn btn-primary float-right">Description</a> -->
+            </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="4">
+    <a ngbNavLink>Testing</a>
+    <ng-template ngbNavContent>
+        <div class="container">
+      <div class="row" *ngFor="let item of products; index as i;">
+        <div class="col-md-12 mt-3" *ngIf="item.type === 'Testing'">
+          <div class="card">
+              <div class="card-header">
+                Feature:  {{item.type}}
+              </div>
+              <div class="card-body">
+               <div *ngIf="enableDesc && enableEditIndex == i; else elseBlock">
+                   <p>{{item.description}}</p>
+                   <button type="button" (click)="enableDesc=false" class="btn btn-primary float-right">Back</button>
+               </div>
+               <ng-template #elseBlock>
+                <ul>
+                    <li>Name: {{item.name}}</li>
+                    <li>Category: {{item.category}} </li>
+                    <li>Latest Version: {{item.latestVersion}}</li>
+                    <li>Documentation: {{item.documentation}}</li>
+                  </ul>
+                  <button type="button" (click)="enableDescription(i)" class="btn btn-primary float-right">Description</button>
+               </ng-template>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div>
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+<!-- <pre>Active: {{ active }}</pre> -->
